@@ -1,0 +1,31 @@
+syntax="proto3";
+
+package position_service;
+option go_package="genproto/position_service";
+
+import "google/protobuf/empty.proto";
+
+service ProfessionService {
+    rpc Create(CreateProfessionRequest) returns (Profession) {}
+    rpc GetAll(GetAllProfessionRequest) returns (GetAllProfessionResponse) {}
+}
+
+message CreateProfessionRequest {
+    string name = 1;
+}
+
+message Profession {
+    string id = 1;
+    string name = 2;
+}
+
+message GetAllProfessionRequest {
+    int32 limit = 1;
+    int32 offset = 2;
+    string search = 3;
+}
+
+message GetAllProfessionResponse {
+    repeated Profession professions = 1;
+    int32 count = 2;
+}
